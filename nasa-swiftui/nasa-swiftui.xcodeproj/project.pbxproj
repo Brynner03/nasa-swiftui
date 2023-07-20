@@ -14,6 +14,7 @@
 		593852082A69AB8000A3FDC2 /* nasa_swiftuiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593852072A69AB8000A3FDC2 /* nasa_swiftuiTests.swift */; };
 		593852122A69AB8000A3FDC2 /* nasa_swiftuiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593852112A69AB8000A3FDC2 /* nasa_swiftuiUITests.swift */; };
 		593852142A69AB8000A3FDC2 /* nasa_swiftuiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593852132A69AB8000A3FDC2 /* nasa_swiftuiUITestsLaunchTests.swift */; };
+		593852212A69B1CB00A3FDC2 /* NasaImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593852202A69B1CB00A3FDC2 /* NasaImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		5938520D2A69AB8000A3FDC2 /* nasa-swiftuiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "nasa-swiftuiUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		593852112A69AB8000A3FDC2 /* nasa_swiftuiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nasa_swiftuiUITests.swift; sourceTree = "<group>"; };
 		593852132A69AB8000A3FDC2 /* nasa_swiftuiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nasa_swiftuiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		593852202A69B1CB00A3FDC2 /* NasaImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				593851F62A69AB7F00A3FDC2 /* nasa_swiftuiApp.swift */,
 				593851F82A69AB7F00A3FDC2 /* ContentView.swift */,
+				593852202A69B1CB00A3FDC2 /* NasaImageView.swift */,
 				593851FA2A69AB8000A3FDC2 /* Assets.xcassets */,
 				593851FC2A69AB8000A3FDC2 /* Preview Content */,
 			);
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				593851F92A69AB7F00A3FDC2 /* ContentView.swift in Sources */,
+				593852212A69B1CB00A3FDC2 /* NasaImageView.swift in Sources */,
 				593851F72A69AB7F00A3FDC2 /* nasa_swiftuiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

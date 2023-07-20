@@ -8,12 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var date = Date()
+    @State private var size = 50.0
+    @State private var isEditing = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("NASA Image")
+                .font(.title)
+                .fontWeight(.semibold)
+            NasaImageView()
+            DatePicker(
+                "Image Date",
+                selection: $date,
+                displayedComponents: [.date]
+            )
+            Slider(
+                value: $size,
+                in: 0...100,
+                step: 5,
+                onEditingChanged: { editing in
+                    isEditing = editing
+                }
+            )
         }
         .padding()
     }
