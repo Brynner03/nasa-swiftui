@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct ContentView: View {
     @State private var date = Date()
     @State private var size = 50.0
@@ -20,12 +18,13 @@ struct ContentView: View {
             Text("NASA Image")
                 .font(.title)
                 .fontWeight(.semibold)
-            NasaImageView(viewModel: viewModel, size: CGFloat(size)) // Pass the size value to NasaImageView
+            NasaImageView(viewModel: viewModel, size: CGFloat(size))
             DatePicker(
                 "Image Date",
                 selection: $date,
                 displayedComponents: [.date]
             )
+            .accessibilityIdentifier("Image Date")
             .onChange(of: date) { _ in
                 viewModel.date = date
                 viewModel.fetchImageURL()
@@ -38,6 +37,7 @@ struct ContentView: View {
                     isEditing = editing
                 }
             )
+            .accessibility(label: Text("Image Size Slider"))
         }
         .padding()
     }
