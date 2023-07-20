@@ -10,6 +10,7 @@ import SwiftUI
 
 struct NasaImageView: View {
     @ObservedObject var viewModel: ImageViewModel
+    var size: CGFloat // Add the size parameter
     
     var body: some View {
         VStack {
@@ -18,6 +19,7 @@ struct NasaImageView: View {
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
+                        .scaleEffect(size / 100)
                 } placeholder: {
                     ProgressView()
                 }
@@ -34,6 +36,7 @@ struct NasaImageView: View {
         }
     }
 }
+
 
 class ImageViewModel: ObservableObject {
     @Published var date: Date
