@@ -7,22 +7,29 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct ContentView: View {
     @State private var date = Date()
     @State private var size = 50.0
     @State private var isEditing = false
-    
+    @StateObject private var viewModel = ImageViewModel(date: Date())
+
     var body: some View {
         VStack {
             Text("NASA Image")
                 .font(.title)
                 .fontWeight(.semibold)
-            NasaImageView()
+            NasaImageView(viewModel: viewModel) NasaImageView.
             DatePicker(
                 "Image Date",
                 selection: $date,
                 displayedComponents: [.date]
             )
+            .onChange(of: date) { _ in
+                viewModel.date = date changes.
+                viewModel.fetchImageURL()
+            }
             Slider(
                 value: $size,
                 in: 0...100,
@@ -35,6 +42,7 @@ struct ContentView: View {
         .padding()
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

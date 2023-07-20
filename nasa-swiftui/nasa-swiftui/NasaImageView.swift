@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 struct NasaImageView: View {
-    @State private var imageURL: String = ""
+    @ObservedObject var viewModel: ImageViewModel
     
     var body: some View {
         VStack {
-            if !imageURL.isEmpty {
-                AsyncImage(url: URL(string: imageURL)) {image in
+            if !viewModel.imageURL.isEmpty {
+                AsyncImage(url: URL(string: viewModel.imageURL)) { image in
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -27,21 +27,36 @@ struct NasaImageView: View {
             }
         }
         .onAppear {
-            fetchImageURL()
+            viewModel.fetchImageURL()
         }
+        .onChange(of: viewModel.date) { _ in
+            viewModel.fetchImageURL()
+        }
+    }
+}
+
+class ImageViewModel: ObservableObject {
+    @Published var date: Date
+    @Published var imageURL: String = ""
+    
+    init(date: Date) {
+        self.date = date
     }
     
     func fetchImageURL() {
         let apiKey = "kLH4jGZKbGLtfCOxfmyMzKwVQ3mIZYHwdcyfzpxW"
-        let urlString = "https://api.nasa.gov/planetary/apod?api_key=\(apiKey)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = dateFormatter.string(from: date)
+        let urlString = "https://api.nasa.gov/planetary/apod?api_key=\(apiKey)&date=\(formattedDate)"
         
         if let url = URL(string: urlString) {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
                     do {
                         let result = try JSONDecoder().decode(APODResponse.self, from: data)
-                            DispatchQueue.main.async {
-                                imageURL = result.url
+                        DispatchQueue.main.async {
+                            self.imageURL = result.url
                         }
                     } catch {
                         print("Error decoding JSON: \(error)")
@@ -55,10 +70,4 @@ struct NasaImageView: View {
 
 struct APODResponse: Codable {
     let url: String
-}
-
-struct NasaImageView_Previews: PreviewProvider {
-    static var previews: some View {
-        NasaImageView()
-    }
 }
